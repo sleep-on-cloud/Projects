@@ -3,62 +3,62 @@
 #include <stdlib.h>
 #include <string.h>
 
-#pragma pack(push, 1)               //±¸Á¶Ã¼¸¦ 1¹ÙÀÌÆ® Å©±â·Î Á¤·Ä
+#pragma pack(push, 1)               
 
-typedef struct _BITMAPFILEHEADER    //BMP ÆÄÀÏ Çì´õ ±¸Á¶Ã¼
+typedef struct _BITMAPFILEHEADER    
 {
-    unsigned short bfType;          //BMP ÆÄÀÏ ¸ÅÁ÷³Ñ¹ö
-    unsigned int   bfSize;          //ÆÄÀÏÅ©±â
-    unsigned short bfReserved1;     //¿¹¾à
-    unsigned short bfReserved2;     //¿¹¾à
-    unsigned int   bfOffBits;       //ºñÆ®¸Ê µ¥ÀÌÅÍÀÇ ½ÃÀÛÀ§Ä¡
+    unsigned short bfType;          
+    unsigned int   bfSize;          
+    unsigned short bfReserved1;     
+    unsigned short bfReserved2;     
+    unsigned int   bfOffBits;       
 } BITMAPFILEHEADER;
 
-typedef struct _BITMAPINFOHEADER{   //BMP Á¤º¸ Çì´õ ±¸Á¶Ã¼
-    unsigned int   biSize;          //ÇöÀç ±¸Á¶Ã¼ÀÇ Å©±â
-    int            biWidth;         //BMPÀÌ¹ÌÁöÀÇ °¡·ÎÅ©±â
-    int            biHeight;        //BMPÀÌ¹ÌÁöÀÇ ¼¼·ÎÅ©±â
-    unsigned short biPlanes;        //»ç¿ëÇÏ´Â »ö»óÆÇÀÇ ¼ö
-    unsigned short biBitCount;      //ÇÈ¼¿ ÇÏ³ª¸¦ Ç¥ÇöÇÏ´Â ºñÆ® ¼ö
-    unsigned int   biCompression;   //¾ĞÃà ¹æ½Ä
-    unsigned int   biSizeImage;     //BMPÀÌ¹ÌÁöÀÇ ÇÈ¼¿ µ¥ÀÌÅÍ Å©±â
-    int            biXPelsPerMeter; //±×¸²ÀÇ °¡·Î ÇØ»óµµ(¹ÌÅÍ´ç ÇÈ¼¿)
-    int            biYPelsPerMeter; //±×¸²ÀÇ ¼¼·Î ÇØ»óµµ(¹ÌÅÍ´ç ÇÈ¼¿)
-    unsigned int   biClrUsed;       //»ö»ó Å×ÀÌºí¿¡¼­ ½ÇÁ¦ »ç¿ëµÇ´Â »ö»ó ¼ö
-    unsigned int   biClrImportant;  //BMP¸¦ Ç¥ÇöÇÏ±â À§ÇØ ÇÊ¿äÇÑ »ö»ó ÀÎµ¦½º ¼ö
+typedef struct _BITMAPINFOHEADER{   
+    unsigned int   biSize;          
+    int            biWidth;         
+    int            biHeight;        
+    unsigned short biPlanes;        
+    unsigned short biBitCount;      
+    unsigned int   biCompression;   
+    unsigned int   biSizeImage;     
+    int            biXPelsPerMeter; 
+    int            biYPelsPerMeter; 
+    unsigned int   biClrUsed;       
+    unsigned int   biClrImportant;  
 } BITMAPINFOHEADER;
 
-typedef struct _RGBTRIPLE           //24ºñÆ® BMPÀÌ¹ÌÁöÀÇ ÇÈ¼¿ ±¸Á¶Ã¼
+typedef struct _RGBTRIPLE           
 {
-    unsigned char rgbtBlue;         //ÆÄ¶û
-    unsigned char rgbtGreen;        //ÃÊ·Ï
-    unsigned char rgbtRed;          //»¡°­
+    unsigned char rgbtBlue;         
+    unsigned char rgbtGreen;        
+    unsigned char rgbtRed;          
 } RGBTRIPLE;
 
 #pragma pack(pop)
 
-#define PIXEL_SIZE  3   //ÇÈ¼¿ ÇÑ °³ÀÇ Å©±â 3¹ÙÀÌÆ®(24ºñÆ®)
-#define PIXEL_ALIGN 4   //ÇÈ¼¿ µ¥ÀÌÅÍ °¡·Î ÇÑ ÁÙÀº 4ÀÇ ¹è¼ö Å©±â·Î ÀúÀåµÊ
+#define PIXEL_SIZE  3   
+#define PIXEL_ALIGN 4   
 
 char path[] = "c:\\Users\\sestr\\Desktop\\";
 int main()
 {
-    FILE *fpBmp;                    //BMP ÆÄÀÏ Æ÷ÀÎÅÍ
-    FILE *fpTxt;                    //TXT ÆÄÀÏ Æ÷ÀÎÅÍ
-    BITMAPFILEHEADER fileHeader;    //BMPÆÄÀÏ Çì´õ ±¸Á¶Ã¼ º¯¼ö
-    BITMAPINFOHEADER infoHeader;    //BMPÁ¤º¸ Çì´õ ±¸Á¶Ã¼ º¯¼ö
+    FILE *fpBmp;                    
+    FILE *fpTxt;                    
+    BITMAPFILEHEADER fileHeader;    
+    BITMAPINFOHEADER infoHeader;    
 
-    unsigned char *image;   //ÇÈ¼¿ µ¥ÀÌÅÍ Æ÷ÀÎÅÍ
-    int size;               //ÇÈ¼¿ µ¥ÀÌÅÍ Å©±â
-    int width, height;      //BMPÀÌ¹ÌÁöÀÇ °¡·Î, ¼¼·Î Å©±â
-    int padding;            //ÇÈ¼¿ µ¥ÀÌÅÍÀÇ °¡·Î Å©±â°¡ 4ÀÇ ¹è¼ö°¡ ¾Æ´Ò ¶§ ³²´Â °ø°£ÀÇ Å©±â
+    unsigned char *image;   
+    int size;               
+    int width, height;      
+    int padding;            
 
     char ascii[] = { '#', '#', '@', '%', '=', '+', '*', ':', '-', '.', ' '};
-    //11°³ ÀÎµ¦½º°¡ ³ôÀ» ¼ö·Ï ¹à¾ÆÁö´Â °ÍÀ» Ç¥Çö
+    
 
     char fileName[20];
     char *filePath;
-    puts("¹ÙÅÁÈ­¸é¿¡ ÀÖ´Â ÆÄÀÏ ÀÌ¸§À» ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À(È®ÀåÀÚ Æ÷ÇÔ)");
+    puts("íŒŒì¼ì´ë¦„ ì…ë ¥(í™•ì¥ì í¬í•¨)");
     scanf("%s", fileName);
     filePath = strcat(path, fileName);
 
